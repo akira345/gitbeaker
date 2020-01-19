@@ -27,6 +27,7 @@
     "jest-extended": "^0.11.2",
     "lerna": "^3.20.2",
     "lint-staged": "^10.0.0-beta.15",
+    "openpgp": "^4.8.0",
     "prettier": "^1.19.1",
     "semantic-release": "^16.0.1",
     "semantic-release-plus": "^17.0.0",
