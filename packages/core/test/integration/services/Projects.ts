@@ -14,7 +14,7 @@ describe('Projects.create', () => {
     const p = await service.create({ name: 'Project Creation Integration Test' });
 
     expect(p).toBeInstanceOf(Object);
-    expect(p.name).toEqual('Project Creation Integration test');
+    expect(p.name).toEqual('Project Creation Integration Test');
   });
 });
 
