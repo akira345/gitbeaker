@@ -1,5 +1,7 @@
-import { generateKey } from 'openpgp';
+import { generateKey, initWorker } from 'openpgp';
 import { UserGPGKeys } from '../../../src';
+
+initWorker({ path: 'openpgp.worker.js' });
 
 let service: UserGPGKeys;
 
@@ -13,10 +15,11 @@ beforeEach(() => {
 describe('UserGPGKeys.add', () => {
   it('should add a new gpg key to the user', async () => {
     const { publicKeyArmored } = await generateKey({
-      userIds: {
-        name: 'Adding User',
-        email: 'test@test.com',
-      },
+      userIds: [
+        {
+          name: 'Adding User',
+        },
+      ],
     });
     const keys = await service.add(publicKeyArmored);
 
@@ -36,10 +39,11 @@ describe('UserGPGKeys.all', () => {
 describe('UserGPGKeys.show', () => {
   it('should get one user gcp key', async () => {
     const { publicKeyArmored } = await generateKey({
-      userIds: {
-        name: 'Show User',
-        email: 'test@test.com',
-      },
+      userIds: [
+        {
+          name: 'Showing User',
+        },
+      ],
     });
     const key = await service.add(publicKeyArmored);
     const keyshow = await service.show(key.id);
@@ -51,10 +55,11 @@ describe('UserGPGKeys.show', () => {
 describe('UserGPGKeys.remove', () => {
   it('should get one user gcp key', async () => {
     const { publicKeyArmored } = await generateKey({
-      userIds: {
-        name: 'Remove User',
-        email: 'test@test.com',
-      },
+      userIds: [
+        {
+          name: 'Removing User',
+        },
+      ],
     });
     const key = await service.add(publicKeyArmored);
 
