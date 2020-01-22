@@ -1,7 +1,7 @@
-import { generateKey, initWorker } from 'openpgp';
+import { generateKey } from 'openpgp';
 import { UserGPGKeys } from '../../../src';
 
-initWorker({ path: 'openpgp.worker.js' });
+global.TextEncoder = undefined;
 
 let service: UserGPGKeys;
 
