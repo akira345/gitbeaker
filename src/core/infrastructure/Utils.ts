@@ -1,3 +1,5 @@
+import FormData from 'form-data';
+
 /* eslint @typescript-eslint/no-explicit-any: 0 */
 
 interface Constructor {
@@ -18,4 +20,13 @@ export function bundler<T extends { [name: string]: Constructor }, P extends key
       this[name] = new Ser(options);
     });
   } as any) as Bundle<T, P>;
+}
+
+export function appendFormFromObject(object) {
+  const form = new FormData();
+
+  Object.entries(object).forEach(([k, v]: [string, any]) => {
+    if (v.content && v.metadata) form.append(k, v.content, v.metadata);
+    else form.append(k, v);
+  });
 }

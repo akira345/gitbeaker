@@ -1,6 +1,7 @@
 import Li from 'li';
 import { camelizeKeys } from 'xcase';
 import { BaseService } from './BaseService';
+import { appendFormFromObject } from './Utils';
 
 export interface Sudo {
   sudo?: string | number;
@@ -91,16 +92,17 @@ function stream(service: BaseService, endpoint: string, options: BaseRequestOpti
 async function post(
   service: BaseService,
   endpoint: string,
-  options: BaseRequestOptions = {},
+  { isForm, ...options }: { isForm?: boolean } & BaseRequestOptions = {},
 ): Promise<PostResponse> {
-  const { sudo, form, ...body } = options;
+  const { sudo, ...externalOpts } = options;
+  const body = isForm ? appendFormFromObject(externalOpts) : externalOpts;
 
-  const response = await service.requester.post(service, endpoint, {
-    body: form || body,
+  const r = await service.requester.post(service, endpoint, {
+    body,
     sudo,
   });
 
-  return response.body;
+  return r.body;
 }
 
 async function put(

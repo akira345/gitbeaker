@@ -24,6 +24,10 @@ rules:
   import/no-default-export: error
   import/prefer-default-export: off
   '@typescript-eslint/explicit-function-return-type': off
+  import/extensions:
+    - error
+    - never
+    - json: always
 
 overrides:
   - files:
@@ -36,6 +40,4 @@ settings:
     node:
       extensions:
         - .js
-        - .jsx
         - .ts
-        - .tsx

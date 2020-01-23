@@ -1,4 +1,3 @@
-import FormData from 'form-data';
 import {
   BaseRequestOptions,
   BaseService,
@@ -6,9 +5,9 @@ import {
   RequestHelper,
   Sudo,
 } from '../infrastructure';
+import { UploadMetadata, defaultMetadata } from './ProjectImportExport';
 import { EventOptions } from './Events';
 import { GroupSchema } from './Groups';
-import { UploadMetadata } from './ProjectImportExport';
 import { UserSchema } from './Users';
 
 // ref: https://docs.gitlab.com/12.6/ee/api/namespaces.html#list-namespaces
@@ -209,17 +208,17 @@ export class Projects extends BaseService {
     return RequestHelper.post(this, `projects/${pId}/unstar`, options);
   }
 
-  upload(projectId, content, { metadata, sudo }: { metadata?: UploadMetadata } & Sudo = {}) {
+  upload(
+    projectId,
+    content,
+    { metadata, ...options }: { metadata?: UploadMetadata } & BaseRequestOptions = {},
+  ) {
     const pId = encodeURIComponent(projectId);
-    const form = new FormData();
 
-    const defaultMetadata: UploadMetadata = {
-      filename: Date.now().toString(),
-      contentType: 'application/octet-stream',
-    };
-
-    form.append('file', content, Object.assign(defaultMetadata, metadata));
-
-    return RequestHelper.post(this, `projects/${pId}/uploads`, { sudo, form });
+    return RequestHelper.post(this, `projects/${pId}/uploads`, {
+      isForm: true,
+      file: { content, metadata: { ...defaultMetadata, ...metadata } },
+      ...options,
+    });
   }
 }
