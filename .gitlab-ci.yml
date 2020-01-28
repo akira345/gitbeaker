@@ -60,8 +60,7 @@ test:core:integration: &integration
   stage: test
   before_script:
     # Install docker compose
-    - apk update
-    - apk add --no-cache nodejs yarn git
+    - apk add --no-cache nodejs-current yarn git
 
     # Spin up container
     - cd scripts
