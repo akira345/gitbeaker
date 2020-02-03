@@ -2,7 +2,7 @@
 try {
   console.log('-------BEFORE--------');
   console.log(TextEncoder.toString());
-  console.log(new TextEncoder('utf-8').encode('test'));
+  console.log(new TextEncoder().encode('test'));
 } catch (e) {
   console.error(e);
 }
@@ -13,7 +13,7 @@ const { generateKey } = require('openpgp');
 try {
   console.log('-------AFTER--------');
   console.log(TextEncoder.toString());
-  console.log(new TextEncoder('utf-8').encode('test'));
+  console.log(new TextEncoder().encode('test'));
 } catch (e) {
   console.error(e);
 }
