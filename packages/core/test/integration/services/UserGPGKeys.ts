@@ -1,14 +1,22 @@
 /*eslint-disable*/
-console.log('-------BEFORE--------');
-console.log(TextEncoder.toString());
-console.log(new TextEncoder('utf-8').encode('test'));
+try {
+  console.log('-------BEFORE--------');
+  console.log(TextEncoder.toString());
+  console.log(new TextEncoder('utf-8').encode('test'));
+} catch (e) {
+  console.error(e);
+}
 
 import { UserGPGKeys } from '../../../src';
 const { generateKey } = require('openpgp');
 
-console.log('-------AFTER--------');
-console.log(TextEncoder.toString());
-console.log(new TextEncoder('utf-8').encode('test'));
+try {
+  console.log('-------AFTER--------');
+  console.log(TextEncoder.toString());
+  console.log(new TextEncoder('utf-8').encode('test'));
+} catch (e) {
+  console.error(e);
+}
 
 let service: UserGPGKeys;
 
