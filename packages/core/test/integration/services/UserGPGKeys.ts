@@ -1,6 +1,14 @@
 /*eslint-disable*/
+console.log('-------BEFORE--------');
+console.log(TextEncoder.toString());
+console.log(new TextEncoder('utf-8').encode('test'));
+
 import { UserGPGKeys } from '../../../src';
 const { generateKey } = require('openpgp');
+
+console.log('-------AFTER--------');
+console.log(TextEncoder.toString());
+console.log(new TextEncoder('utf-8').encode('test'));
 
 let service: UserGPGKeys;
 

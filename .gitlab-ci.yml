@@ -58,9 +58,9 @@ test:core:integration: &integration
     - apk add --no-cache nodejs-current yarn git
 
     # Testing node
-    - node -v
-    - node -e "console.log(TextEncoder.toString())"
-    - node -e "console.log(new TextEncoder('utf-8').encode('test'))"
+    # - node -v
+    # - node -e "console.log(TextEncoder.toString())"
+    # - node -e "console.log(new TextEncoder('utf-8').encode('test'))"
 
     # Spin up container
     - cd scripts
