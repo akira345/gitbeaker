@@ -57,6 +57,11 @@ test:core:integration: &integration
     # Install docker compose
     - apk add --no-cache nodejs-current yarn git
 
+    # Testing node
+    - node -v
+    - node -e "console.log(TextEncoder.toString())"
+    - node -e "console.log(new TextEncoder('utf-8').encode('test'))"
+
     # Spin up container
     - cd scripts
     - docker-compose -f docker-compose.yml up -d

@@ -1,8 +1,6 @@
-global.TextEncoder = undefined;
-
 /*eslint-disable*/
-import { generateKey } from 'openpgp';
 import { UserGPGKeys } from '../../../src';
+const { generateKey } = require('openpgp');
 
 let service: UserGPGKeys;
 
